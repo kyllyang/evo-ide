@@ -1,0 +1,360 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<idea-plugin>
+  <id>com.intellij.evo.framework</id>
+  <name>Evo Framework</name>
+  <version>1.0</version>
+  <vendor email="kyllyang@gmail.com" url="https://github.com/kyllyang">Github</vendor>
+
+  <description><![CDATA[Evo Framework Initializr project wizard.]]></description>
+
+  <category>Web/JavaEE Technologies</category>
+  <vendor>sinosoft</vendor>
+
+  <change-notes><![CDATA[
+      1 ........
+      2 ........
+      3 ........
+      4 ........
+    ]]>
+  </change-notes>
+
+  <idea-version since-build="191.6168.87"/>
+
+  <!--<resource-bundle>EvoApiBundle</resource-bundle>
+  <resource-bundle>messages.EvoRunBundle</resource-bundle>-->
+
+
+  <depends>com.intellij.spring.boot</depends>
+  <!--
+  <depends config-file="spring-boot-intelliLang.xml" optional="true">org.intellij.intelliLang</depends>
+  <depends config-file="spring-boot-jsp.xml" optional="true">com.intellij.jsp</depends>
+  <depends config-file="spring-boot-mvc.xml" optional="true">com.intellij.spring.mvc</depends>
+  <depends config-file="spring-boot-cloud-stream.xml" optional="true">com.intellij.spring.integration</depends>
+  <depends config-file="spring-boot-yaml.xml" optional="true">org.jetbrains.plugins.yaml</depends>
+  <depends config-file="spring-boot-gradle.xml" optional="true">org.jetbrains.plugins.gradle</depends>
+  <depends config-file="spring-boot-diagram-integration.xml" optional="true">com.intellij.diagram</depends>-->
+    <depends config-file="evo-maven.xml" optional="true">org.jetbrains.idea.maven</depends>
+
+  <extensionPoints>
+    <!--<extensionPoint name="modelConfigFileContributor"
+                    interface="com.intellij.evo.framework.model.EvoModelConfigFileContributor"/>
+    <extensionPoint name="modelConfigFileNameContributor"
+                    interface="com.intellij.evo.framework.model.EvoModelConfigFileNameContributor"/>
+    <extensionPoint name="modelConditionalContributor"
+                    beanClass="com.intellij.evo.framework.model.autoconfigure.conditions.ConditionalContributorEP">
+      <with attribute="implementation" implements="com.intellij.evo.framework.model.autoconfigure.conditions.ConditionalContributor"/>
+    </extensionPoint>
+
+    <extensionPoint name="placeholderReferenceResolver"
+                    interface="com.intellij.evo.framework.application.config.EvoPlaceholderReferenceResolver"/>
+    <extensionPoint name="replacementTokenResolver"
+                    interface="com.intellij.evo.framework.application.config.EvoReplacementTokenResolver"/>
+
+    <extensionPoint name="run.endpoint"
+                    interface="com.intellij.evo.framework.run.lifecycle.Endpoint"/>
+
+    <extensionPoint name="run.endpointTabConfigurable"
+                    interface="com.intellij.evo.framework.run.lifecycle.tabs.EndpointTabConfigurable"
+                    area="IDEA_PROJECT"/>
+
+    <extensionPoint name="run.liveBeansPanelContent"
+                    interface="com.intellij.evo.framework.run.lifecycle.beans.tab.LiveBeansPanelContent"/>-->
+
+    <extensionPoint name="initializr.moduleBuilderPostTask"
+                    interface="com.intellij.evo.framework.initializr.EvoInitializrModuleBuilderPostTask"/>
+
+    <!--<extensionPoint name="modelExtender"
+                    interface="com.intellij.evo.framework.model.EvoModelExtender"/>
+
+    <extensionPoint name="applicationUpdatePolicy"
+                    interface="com.intellij.evo.framework.run.update.EvoApplicationUpdatePolicy"/>
+
+    <extensionPoint name="run.applicationUrlPathProviderFactory"
+                    interface="com.intellij.evo.framework.run.EvoApplicationUrlPathProviderFactory"/>
+
+    <extensionPoint name="customHintReferenceProvider"
+                    interface="com.intellij.evo.framework.application.config.hints.EvoCustomHintReferenceProvider"/>-->
+  </extensionPoints>
+
+  <extensions defaultExtensionNs="com.intellij">
+    <!--<statistics.projectUsagesCollector implementation="com.intellij.evo.framework.EvoFeatureUsagesCollector"/>
+    <statistics.projectUsagesCollector implementation="com.intellij.evo.framework.run.statistics.EvoRunFeatureUsagesCollector"/>-->
+    <!--<statistics.counterUsagesCollector groupId="spring.boot.run.usages" version="2"/>-->
+
+    <!--<library.presentationProvider implementation="com.intellij.evo.framework.library.EvoLibraryPresentationProvider"/>-->
+
+    <!--<spring.configSearcherScopeModifier implementation="com.intellij.evo.framework.facet.EvoAutoConfigureConfigSearcherScopeModifier"/>
+    <spring.fileSetEditorCustomization implementation="com.intellij.evo.framework.facet.EvoFileSetEditorCustomization"/>-->
+    <!--<pathMacroFilter
+            implementation="com.intellij.evo.framework.facet.EvoFileSetEditorCustomization$SpringBootCustomConfigFilesSettingPathMacroFilter"/>
+
+    <iconProvider implementation="com.intellij.evo.framework.EvoIconProvider"/>
+
+    <psi.referenceContributor language="UAST" implementation="com.intellij.evo.framework.EvoUastReferenceContributor"/>
+
+    <applicationService serviceInterface="com.intellij.evo.framework.application.EvoApplicationService"
+                        serviceImplementation="com.intellij.evo.framework.application.EvoApplicationServiceImpl"/>-->
+
+    <!-- settings -->
+    <!--<projectService
+            serviceInterface="com.intellij.spring.boot.options.SpringBootSettings"
+            serviceImplementation="com.intellij.spring.boot.options.SpringBootSettingsImpl"/>
+    <projectConfigurable id="spring.boot" parentId="spring"
+                         bundle="SpringBootApiBundle" key="settings.displayName"
+                         instance="com.intellij.evo.framework.options.EvoConfigurable"/>-->
+
+    <!-- run config -->
+    <!--<configurationType implementation="com.intellij.evo.framework.run.EvoApplicationConfigurationType"/>
+    <runConfigurationProducer
+            order="first"
+            implementation="com.intellij.evo.framework.run.EvoApplicationRunConfigurationProducer"/>
+    <runDashboardContributor implementation="com.intellij.evo.framework.run.EvoApplicationRunDashboardContributor"/>
+    <postStartupActivity implementation="com.intellij.evo.framework.run.EvoApplicationRunDashboardChecker"/>
+
+    <projectService
+            serviceInterface="com.intellij.evo.framework.run.lifecycle.EvoApplicationLifecycleManager"
+            serviceImplementation="com.intellij.evo.framework.run.lifecycle.EvoApplicationLifecycleManagerImpl"/>
+    <projectService
+            serviceInterface="com.intellij.evo.framework.run.lifecycle.tabs.EvoEndpointsTabSettings"
+            serviceImplementation="com.intellij.evo.framework.run.lifecycle.tabs.EvoEndpointsTabSettingsImpl"/>
+
+    <spring.boot.applicationUpdatePolicy implementation="com.intellij.evo.framework.run.update.UpdateResourcesPolicy"/>
+    <spring.boot.applicationUpdatePolicy implementation="com.intellij.evo.framework.run.update.UpdateClassesAndResourcesPolicy"/>
+    <spring.boot.applicationUpdatePolicy implementation="com.intellij.evo.framework.run.update.UpdateTriggerFilePolicy"/>
+    <spring.boot.applicationUpdatePolicy implementation="com.intellij.evo.framework.run.update.UpdateClassesAndTriggerFilePolicy"/>
+
+    <runningApplicationUpdaterProvider implementation="com.intellij.evo.framework.run.update.EvoApplicationUpdaterProvider"/>-->
+
+    <!-- lifecycle -->
+    <!--<applicationService serviceInterface="com.intellij.evo.framework.run.lifecycle.EvoApplicationUrlUtil"
+                        serviceImplementation="com.intellij.evo.framework.run.lifecycle.EvoApplicationUrlUtilImpl"/>-->
+    <!-- "Beans" endpoint -->
+    <!--<spring.boot.run.endpoint implementation="com.intellij.evo.framework.run.lifecycle.beans.BeansEndpoint"
+                              id="beans" order="first"/>
+    <codeInsight.lineMarkerProvider language="UAST"
+                                    implementationClass="com.intellij.evo.framework.run.lifecycle.beans.gutter.LiveBeansClassLineMarkerProvider"/>
+    <codeInsight.lineMarkerProvider language="XML"
+                                    implementationClass="com.intellij.evo.framework.run.lifecycle.beans.gutter.LiveBeansDomLineMarkerProvider"/>
+    <projectService serviceImplementation="com.intellij.evo.framework.run.lifecycle.beans.tab.BeansEndpointTabSettings"/>-->
+
+    <!-- "Health" endpoint -->
+    <!--<spring.boot.run.endpoint implementation="com.intellij.evo.framework.run.lifecycle.health.HealthEndpoint"
+                              id="health" order="after beans"/>
+    <spring.boot.run.endpointTabConfigurable
+            implementation="com.intellij.evo.framework.run.lifecycle.health.tab.HealthEndpointTabConfigurable"/>
+    <projectService serviceImplementation="com.intellij.evo.framework.run.lifecycle.health.tab.HealthEndpointTabSettings"/>-->
+
+    <!-- config files -->
+    <!--<vetoRenameCondition
+            implementation="com.intellij.evo.framework.application.metadata.ConfigKeyPsiRenameVetoCondition"/>
+    <automaticRenamerFactory
+            implementation="com.intellij.evo.framework.application.config.EvoProfileConfigFileAutomaticRenamerFactory"/>
+    <methodReferencesSearch
+            implementation="com.intellij.evo.framework.application.config.EvoConfigurationPropertyReferenceSearcher"/>
+
+    <usageTypeProvider implementation="com.intellij.evo.framework.application.config.EvoConfigFileUsageTypeProvider"/>
+
+    <applicationService
+            serviceInterface="com.intellij.evo.framework.application.config.EvoHintReferencesProvider"
+            serviceImplementation="com.intellij.evo.framework.application.config.hints.EvoHintReferencesProviderImpl"/>
+
+    <applicationService
+            serviceInterface="com.intellij.evo.framework.application.metadata.EvoApplicationMetaConfigKeyManager"
+            serviceImplementation="com.intellij.evo.framework.application.metadata.EvoApplicationMetaConfigKeyManagerImpl"/>
+    <postStartupActivity implementation="com.intellij.evo.framework.application.metadata.EvoMetadataCompilerAfterTaskInstaller"/>
+
+    <applicationService serviceInterface="com.intellij.evo.framework.model.EvoConfigurationFileService"
+                        serviceImplementation="com.intellij.evo.framework.model.EvoConfigurationFileServiceImpl"/>-->
+
+    <!-- application.properties -->
+    <!--<spring.inspectionsRegistryContributor
+            implementation="com.intellij.evo.framework.application.properties.EvoApplicationPropertiesInspectionsRegistryContributor"/>
+    <spring.boot.modelConfigFileContributor
+            implementation="com.intellij.evo.framework.application.properties.EvoModelApplicationPropertiesConfigFileContributor"
+            order="first"/>
+
+    <annotator language="Properties"
+               implementationClass="com.intellij.evo.framework.application.properties.EvoApplicationPropertiesAnnotator"/>
+    <multiHostInjector implementation="com.intellij.evo.framework.application.properties.EvoApplicationPropertiesValueRegexInjector"/>
+    <vetoRenameCondition
+            implementation="com.intellij.evo.framework.application.properties.EvoApplicationPropertiesRenameVetoCondition"/>
+    <properties.implicitPropertyUsageProvider
+            implementation="com.intellij.evo.framework.application.properties.EvoApplicationPropertiesImplicitPropertyUsageProvider"/>
+    <properties.alphaUnsortedInspectionSuppressor
+            implementation="com.intellij.evo.framework.application.properties.EvoAlphaUnsortedPropertiesFileInspectionSuppressor"/>
+    <psi.referenceContributor language="Properties"
+                              implementation="com.intellij.evo.framework.application.properties.EvoApplicationPropertiesReferenceContributor"/>
+    <completion.contributor
+            language="Properties"
+            order="first"
+            implementationClass="com.intellij.evo.framework.application.properties.EvoApplicationPropertiesSmartClassReferenceCompletionContributor"/>
+    <completion.contributor
+            language="Properties"
+            order="first"
+            implementationClass="com.intellij.evo.framework.application.properties.EvoApplicationPropertiesReplacementTokenCompletionContributor"/>
+    <lookup.actionProvider
+            implementation="com.intellij.evo.framework.application.properties.EvoApplicationPropertiesReplacementTokenCompletionContributor"/>
+    <renameHandler
+            implementation="com.intellij.evo.framework.application.properties.EvoApplicationPropertiesConfigKeyPathBeanPropertyRenameHandler"/>
+
+    <lang.documentationProvider language="Properties"
+                                order="first"
+                                implementationClass="com.intellij.evo.framework.application.properties.EvoApplicationPropertiesDocumentationProvider"/>
+    <spellchecker.support language="Properties" order="before propertiesSpellcheckingStrategy"
+                          implementationClass="com.intellij.evo.framework.application.properties.EvoApplicationPropertiesSpellcheckingStrategy"/>
+    <localInspection
+            language="Properties"
+            displayName="Spring Boot application.properties"
+            groupPath="Spring"
+            groupName="Spring Boot"
+            enabledByDefault="true" level="WARNING"
+            implementationClass="com.intellij.evo.framework.application.properties.EvoApplicationPropertiesInspection"/>-->
+
+    <!-- additional.json -->
+    <!--<editorNotificationProvider
+            implementation="com.intellij.evo.framework.application.metadata.EvoMetadataEditorNotificationsProvider"/>
+    <json.jsonWidgetSuppressor
+            implementation="com.intellij.evo.framework.application.metadata.additional.EvoAdditionalConfigJsonWidgetSuppressor"/>
+
+    <psi.referenceContributor language="JSON"
+                              implementation="com.intellij.evo.framework.application.metadata.additional.EvoAdditionalConfigReferenceContributor"/>
+    <annotator language="JSON"
+               implementationClass="com.intellij.evo.framework.application.metadata.additional.EvoAdditionalConfigAnnotator"/>
+    <spellchecker.support language="JSON"
+                          order="first"
+                          implementationClass="com.intellij.evo.framework.application.metadata.additional.EvoAdditionalSpellcheckingStrategy"/>
+    <localInspection
+            language="JSON"
+            displayName="Spring Boot additional-spring-configuration-metadata.json"
+            groupPath="Spring"
+            groupName="Spring Boot"
+            enabledByDefault="true" level="ERROR"
+            implementationClass="com.intellij.evo.framework.application.metadata.additional.EvoAdditionalConfigInspection"/>
+    <spring.inspectionsRegistryContributor
+            implementation="com.intellij.evo.framework.application.metadata.additional.EvoAdditionalConfigInspectionsRegistryContributor"/>
+    <spring.inspectionsRegistryAdditionalFilesContributor
+            implementation="com.intellij.evo.framework.application.metadata.additional.EvoAdditionalConfigInspectionsRegistryContributor$Contributor"/>
+
+    <gotoRelatedProvider
+            implementation="com.intellij.evo.framework.application.metadata.additional.EvoAdditionalConfigGotoRelatedProvider"/>-->
+
+
+    <!-- model -->
+    <!--<spring.modelProvider implementation="com.intellij.evo.framework.model.EvoModelProvider"/>
+    <spring.customModuleComponentsDiscoverer
+            implementation="com.intellij.evo.framework.model.EvoImplicitBeansProvider"/>
+
+    <spring.inspectionsRegistryAdditionalFilesContributor
+            implementation="com.intellij.evo.framework.model.EvoConfigFileAdditionalFilesContributor"/>
+
+    <semContributor implementation="com.intellij.evo.framework.model.autoconfigure.jam.EvoAutoconfigureSemContributor"/>
+
+    <applicationService serviceInterface="com.intellij.evo.framework.model.autoconfigure.EvoAutoConfigClassFilterService"
+                        serviceImplementation="com.intellij.evo.framework.model.autoconfigure.EvoAutoConfigClassFilterServiceImpl"/>
+    <fileBasedIndex implementation="com.intellij.evo.framework.model.autoconfigure.AutoConfigureMetadataIndex"/>
+
+    <spring.localAnnotationModelDependentModelsProvider
+            implementation="com.intellij.evo.framework.model.autoconfigure.EnableAutoConfigDependentModelsProvider"/>
+    <spring.customLocalComponentsDiscoverer
+            implementation="com.intellij.evo.framework.model.properties.ConfigurationPropertiesDiscoverer"/>
+    <spring.localAnnotationModelDependentModelsProvider
+            implementation="com.intellij.evo.framework.model.autoconfigure.actuator.ManagementContextConfigurationDependentModelsProvider"/>
+
+    <spring.boot.modelConfigFileNameContributor
+            implementation="com.intellij.evo.framework.model.EvoApplicationConfigFileNameContributor"
+            id="application"/>
+
+
+    <localInspection
+            language="UAST"
+            displayName="Spring Boot Application Setup"
+            groupPath="Spring"
+            groupName="Spring Boot"
+            enabledByDefault="true" level="ERROR"
+            implementationClass="com.intellij.evo.framework.model.EvoApplicationSetupInspection"/>-->
+
+    <!-- SB conditions -->
+    <!--<spring.boot.modelConditionalContributor
+            condition="org.springframework.boot.autoconfigure.mail.MailSenderAutoConfiguration.MailSenderCondition"
+            implementation="com.intellij.evo.framework.model.autoconfigure.conditions.MailSenderCondition"/>
+    <spring.boot.modelConditionalContributor
+            condition="org.springframework.boot.autoconfigure.orm.jpa.HibernateJpaAutoConfiguration.HibernateEntityManagerCondition"
+            implementation="com.intellij.evo.framework.model.autoconfigure.conditions.HibernateEntityManagerCondition"/>
+    <spring.boot.modelConditionalContributor
+            condition="org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration.EmbeddedDatabaseCondition"
+            implementation="com.intellij.evo.framework.model.autoconfigure.conditions.EmbeddedDatabaseCondition"/>
+    <spring.boot.modelConditionalContributor
+            condition="org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration.PooledDataSourceCondition"
+            implementation="com.intellij.evo.framework.model.autoconfigure.conditions.PooledDataSourceCondition"/>-->
+
+    <!-- Testing -->
+    <!--<spring.jam.customMetaImplementation
+            baseAnnotationFqn="org.springframework.test.context.ContextConfiguration"
+            customMetaAnnotationFqn="com.intellij.evo.framework.model.testing.jam.custom.EvoApplicationConfiguration"/>
+    <implicitUsageProvider order="last" implementation="com.intellij.evo.framework.model.testing.EvoTestingImplicitUsageProvider"/>
+
+    <spring.jam.customMetaImplementation
+            baseAnnotationFqn="org.springframework.test.context.ContextConfiguration"
+            customMetaAnnotationFqn="com.intellij.evo.framework.model.testing.jam.custom.EvoTest"/>
+    <spring.testingImplicitContextsProvider
+            implementation="com.intellij.evo.framework.model.testing.jam.custom.providers.EvostrapImplicitBeansProvider"/>
+    <spring.testingImplicitContextsProvider
+            implementation="com.intellij.evo.framework.model.testing.jam.custom.providers.EvoAutoConfiguredImplicitContextsProvider"/>
+    <spring.testingImplicitContextsProvider
+            implementation="com.intellij.evo.framework.model.testing.jam.custom.providers.EvoMockBeansProvider"/>-->
+
+    <!-- config properties -->
+    <!--<implicitUsageProvider implementation="com.intellij.evo.framework.model.properties.ConfigurationPropertiesImplicitUsageProvider"/>
+    <codeInsight.lineMarkerProvider language="JAVA"
+                                    implementationClass="com.intellij.evo.framework.model.properties.ConfigurationPropertyRelatedItemLineMarkerProvider"/>
+
+    <spring.testingAnnotationsProvider implementation="com.intellij.evo.framework.model.testing.EvostrapWithAnnotationsProvider"/>
+    <localInspection
+            language="UAST"
+            displayName="Spring Boot @ConfigurationProperties"
+            groupPath="Spring"
+            groupName="Spring Boot"
+            enabledByDefault="true" level="ERROR"
+            implementationClass="com.intellij.evo.framework.model.properties.ConfigurationPropertiesInspection"/>-->
+
+    <!-- banner -->
+    <!--<completion.contributor
+            order="first"
+            language="TEXT"
+            implementationClass="com.intellij.evo.framework.banner.EvoBannerCompletionContributor"/>
+    <psi.referenceContributor language="TEXT" implementation="com.intellij.evo.framework.banner.EvoBannerReferenceContributor"/>
+    <annotator language="TEXT" implementationClass="com.intellij.evo.framework.banner.EvoBannerAnnotator"/>-->
+
+    <!-- spring-initializr -->
+    <moduleBuilder builderClass="com.intellij.evo.framework.initializr.EvoInitializrModuleBuilder" order="last"/>
+    <!--<codeInsight.externalLibraryResolver implementation="com.intellij.evo.framework.library.EvoStartersExternalLibraryResolver"/>-->
+
+    <!-- spring-cloud -->
+   <!-- <spring.boot.modelExtender implementation="com.intellij.evo.framework.cloud.model.bootstrap.EvoBootstrapModelExtender"/>
+    <spring.boot.modelConfigFileNameContributor
+            implementation="com.intellij.evo.framework.cloud.model.bootstrap.EvoBootstrapConfigFileNameContributor"
+            id="bootstrap" order="after application"/>
+
+    <localInspection language="UAST" shortName="SpringBootBootstrapConfigurationInspection"
+                     key="spring.cloud.bootstrap.configuration.inspection.name"
+                     bundle="messages.EvoCloudBundle"
+                     groupBundle="messages.EvoCloudBundle"
+                     groupKey="spring.cloud.inspection.group.name" groupPath="Spring"
+                     enabledByDefault="true" level="WEAK WARNING"
+                     implementationClass="com.intellij.evo.framework.cloud.model.bootstrap.EvoBootstrapConfigurationInspection"/>
+
+    <semContributor implementation="com.intellij.evo.framework.cloud.model.EvoCloudSemContributor"/>-->
+  </extensions>
+
+  <actions>
+    <!--<action id="SpringBootDiagnosticsAction"
+            icon="SpringBootApiIcons.Evo"
+            class="com.intellij.evo.framework.EvoDiagnosticsAction"
+            internal="true"
+            text="Spring Boot Diagnostics">
+      <add-to-group group-id="Internal.Evo"/>
+    </action>-->
+  </actions>
+
+</idea-plugin>

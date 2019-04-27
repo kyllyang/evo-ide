@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<idea-plugin>
+
+    <extensions defaultExtensionNs="org.jetbrains.idea.maven">
+        <importer implementation="com.intellij.spring.boot.initializr.maven.SpringInitializrMavenImporter"/>
+    </extensions>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <evo.framework.initializr.moduleBuilderPostTask
+                implementation="com.intellij.evo.framework.initializr.maven.EvoInitializrMavenModuleBuilderPostTask"/>
+
+        <spring.boot.replacementTokenResolver
+                implementation="com.intellij.spring.boot.application.config.maven.SpringBootMavenReplacementTokenResolver"/>
+    </extensions>
+</idea-plugin>
